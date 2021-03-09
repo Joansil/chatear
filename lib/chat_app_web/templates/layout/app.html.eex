@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Chatear App</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <link rel="stylesheet" href="<%= Routes.static_path(@conn, "/css/app.css") %>"/>
+
+  </head>
+  <body>
+
+  <div class="d-flex flex-column flex-md row align-items-center p-3 px-md-4 bg-dark">
+    <h3 class="my-0 mr-md-auto font-weight-normal">
+      <%= link "Chatear App", to: Routes.room_path(@conn, :index), class: "navbar-brand text-light" %>
+    </h3>
+    <%= if ChatApp.Accounts.user_signed_in?(@conn) do %>
+      <nav class="text-light my-2 my-md-0 mr-md-3">
+        Signed in as: <strong><%= ChatApp.Accounts.current_user(@conn).username %></strong>
+      </nav>
+      <%= link "Sign Out", to: Routes.session_path(@conn, :delete), method: :delete, class: "btn btn-outline-primary" %>
+    <% else %>>
+      <%=link "Sign Up", to: Routes.session_path(@conn, :new), class: "btn btn-outline-primary ml-md-3" %>
+    <% end %>
+  </div>
+
+    <%= unless is_nil(get_flash(@conn, :info)) do %>
+      <p class="alert alert-success" role="alert"><%= get_flash(@conn, :info) %></p>
+    <% end %>
+    <%= unless is_nil(get_flash(@conn, :error)) do %>
+      <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
+    <% end %>
+
+    <main role="main" class="container">
+      <%= render @view_module, @view_template, assigns %>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.6.0/dist/umd/popper.min.js" integrity="sha384-KsvD1yqQ1/1+IA7gi3P0tyJcT3vR+NdBTt13hSJ2lnve8agRGXTTyNaBYmCR/Nwi" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.min.js" integrity="sha384-nsg8ua9HAw1y0W1btsyWgBklPnCUAFLuTMS2G72MMONqmOymq585AcH49TLBQObG" crossorigin="anonymous"></script>
+    <script defer src = "https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+    <script defer type="text/javascript" src="<%= Routes.static_path(@conn, "/js/app.js") %>"></script>
+
+  </body>
+</html>
