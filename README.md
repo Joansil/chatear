@@ -1,4 +1,4 @@
-# ChatApp
+# Chatear App - Live Chat App in Elixir and Phoenix Framework
 
 Live chat app in Elixir and Phoenix framework. You can create rooms, visit chat rooms, register users, etc...
 
