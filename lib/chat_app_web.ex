@@ -69,6 +69,7 @@ defmodule ChatAppWeb do
       import ChatAppWeb.ErrorHelpers
       import ChatAppWeb.Gettext
       alias ChatAppWeb.Router.Helpers, as: Routes
+      alias ChatAppWeb.Plugs.AuthUser
     end
   end
 

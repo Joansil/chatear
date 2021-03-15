@@ -1,12 +1,16 @@
 defmodule ChatApp.Chat.Room do
   use Ecto.Schema
   import Ecto.Changeset
+
   alias ChatApp.Chat.Room
 
   schema "rooms" do
     field :description, :string
     field :name, :string
     field :topic, :string
+
+    belongs_to :user, ChatApp.Accounts.User
+    has_many :messages, ChatApp.Chat.Message
 
     timestamps()
   end

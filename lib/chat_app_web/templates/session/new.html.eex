@@ -9,12 +9,12 @@
     <div class="form-group">
         <%= label f, :email, class: "control_label" %>
         <%= text_input f, :email, class: "form_control", placeholder: "Email Adress...", required: true, autofocus: true %>
-        <%= error_tag f, :email %>
+
     </div>
     <div class="form-group">
      <%= label f, :password, class: "control_label" %>
-        <%= text_input f, :password, class: "form_control", placeholder: "Password...", required: true %>
-        <%= error_tag f, :password %>
+        <%= password_input f, :password, class: "form_control", placeholder: "Password...", required: true %>
+
     </div>
     <div class="form-group">
         <%= submit "Sign In", class: "btn btn-primary"%>

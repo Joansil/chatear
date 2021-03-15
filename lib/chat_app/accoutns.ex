@@ -8,6 +8,7 @@ defmodule ChatApp.Accounts do
     cond do
       user && Bcrypt.check_pass(password, user.password_hash) ->
         {:ok, user}
+
       true ->
         {:error, :unauthorized}
     end
@@ -24,4 +25,7 @@ defmodule ChatApp.Accounts do
     Plug.Conn.configure_session(conn, drop: true)
   end
 
+  def register(params) do
+    User.registration_changeset(%User{}, params) |> Repo.insert()
+  end
 end
